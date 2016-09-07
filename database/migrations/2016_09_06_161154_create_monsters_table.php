@@ -33,6 +33,6 @@ class CreateMonstersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('monsters');
     }
 }

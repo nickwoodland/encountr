@@ -10,7 +10,12 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    return 'halp';
 });
+
+Route::resource('character', 'CharactersController');
+Route::resource('encounter', 'EncountersController');
+Route::resource('monster', 'MonstersController');
+Route::resource('monsterInstance', 'MonsterInstancesController');
+Route::resource('encounterActor', 'EncounterActorsController');

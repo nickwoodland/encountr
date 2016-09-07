@@ -16,6 +16,8 @@ class CreateEncountersTable extends Migration
         Schema::create('encounters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('conditions'); //i.e darkness, wind, water, etc
+            $table->smallInteger('round');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateEncountersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('encounters');
     }
 }

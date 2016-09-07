@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCharactersInstancesTable extends Migration
+class CreateEncounterActorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,20 @@ class CreateCharactersInstancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('characters_instances', function (Blueprint $table) {
+        Schema::create('encounter_actors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('character_id')->unsigned();
             $table->integer('encounter_id')->unsigned();
+            $table->integer('actor_id')->unsigned();
+            $table->string('actor_type');
             $table->integer('current_init');
-            $table->integer('current_hp');
             $table->timestamps();
+
+            $table->foreign('encounter_id')
+            ->references('id')
+            ->on('encounters');
+
+            // not 100% sure if/how to define a polymorphic relation in a migration
+            // TODO -> define relation between actor and char/monster
         });
     }
 
@@ -30,6 +37,6 @@ class CreateCharactersInstancesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('encounter_actors');
     }
 }
