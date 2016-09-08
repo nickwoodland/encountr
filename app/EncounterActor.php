@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class EncounterActor extends Model
 {
+
+    protected $table = 'encounter_actors';
         /**
      * Get the post that owns the comment.
      */
