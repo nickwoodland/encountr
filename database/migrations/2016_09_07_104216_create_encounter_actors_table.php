@@ -23,7 +23,8 @@ class CreateEncounterActorsTable extends Migration
 
             $table->foreign('encounter_id')
             ->references('id')
-            ->on('encounters');
+            ->on('encounters')
+            ->onDelete('cascade');
 
             // not 100% sure if/how to define a polymorphic relation in a migration
             // TODO -> define relation between actor and char/monster

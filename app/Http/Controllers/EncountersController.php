@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Encounter;
+
 class EncountersController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class EncountersController extends Controller
      */
     public function index()
     {
-        //
+        $encounters = Encounter::orderBy('created_at', 'desc')->get();
+        return view('encounters/index')->with('encounters', $encounters);
     }
 
     /**
@@ -79,8 +82,12 @@ class EncountersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Encounter $encounter)
     {
-        //
+        $encounter->delete();
+
+        flash('Your Encounter has been deleted', 'success');
+
+        return redirect('/');
     }
 }

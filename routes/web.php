@@ -10,10 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/', function() {
-    return 'halp';
-});
-
+Route::get('/' , 'EncountersController@index');
 Route::resource('character', 'CharactersController');
 Route::resource('encounter', 'EncountersController');
 Route::resource('monster', 'MonstersController');
