@@ -8,6 +8,10 @@ use App\Http\Requests;
 
 use App\Encounter;
 
+use App\Character;
+
+use App\Monster;
+
 class EncountersController extends Controller
 {
     /**
@@ -28,7 +32,9 @@ class EncountersController extends Controller
      */
     public function create()
     {
-        //
+        $pcs = Character::pluck('name', 'id');
+        $npcs = Monster::pluck('name', 'id');
+        return view('encounters/create')->with(array('pcs'=>$pcs,'npcs'=>$npcs));
     }
 
     /**
@@ -39,7 +45,14 @@ class EncountersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->input('name'));
+        $encounter = new Encounter;
+        $encounter->name = $request->input('name');
+        $encounter->round = 1;
+        $encounter->conditions = json_encode($request->input('conditions'));
+        $encounter->save();
+
+        return redirect('/');
     }
 
     /**

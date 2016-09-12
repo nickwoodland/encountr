@@ -16,7 +16,7 @@ class CreateEncountersTable extends Migration
         Schema::create('encounters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('conditions'); //i.e darkness, wind, water, etc
+            $table->string('conditions')->nullable(); //i.e darkness, wind, water, etc
             $table->smallInteger('round');
             $table->timestamps();
         });
