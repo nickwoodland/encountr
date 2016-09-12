@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Character;
+
 class CharactersController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class CharactersController extends Controller
      */
     public function index()
     {
-        //
+            $characters = Character::orderBy('name', 'desc')->get();
+            return view('characters/index')->with('characters', $characters);
     }
 
     /**
@@ -25,7 +28,7 @@ class CharactersController extends Controller
      */
     public function create()
     {
-        //
+        return view('characters/create');
     }
 
     /**
@@ -36,7 +39,12 @@ class CharactersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $character = new Character;
+        $character->name = $request->input('name');
+        $character->init = $request->input('init');
+        $character->save();
+
+        return redirect('/');
     }
 
     /**
