@@ -7,7 +7,7 @@
     </head>
     <body>
 
-        {{--@include('nav/_primary')--}}
+        @include('nav/_primary')
 
         <div class="container">
 
