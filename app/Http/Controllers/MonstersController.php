@@ -28,7 +28,7 @@ class MonstersController extends Controller
      */
     public function create()
     {
-        //
+        return view('monsters/create');
     }
 
     /**
@@ -39,7 +39,26 @@ class MonstersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+            $table->string('name');
+            $table->smallInteger('init');
+            $table->smallInteger('max_hp');
+            $table->smallInteger('to_hit_melee');
+            $table->smallInteger('to_hit_ranged');
+            $table->smallInteger('to_hit_spell');
+            $table->smallInteger('ac');
+         */
+        $monster = new Monster;
+        $monster->name = $request->input('name');
+        $monster->init = $request->input('init');
+        $monster->max_hp = $request->input('max_hp');
+        $monster->to_hit_melee = $request->input('to_hit_melee');
+        $monster->to_hit_ranged = $request->input('to_hit_ranged');
+        $monster->to_hit_spell = $request->input('to_hit_spell');
+        $monster->ac = $request->input('ac');
+        $monster->save();
+
+        return redirect('/');
     }
 
     /**
@@ -82,8 +101,12 @@ class MonstersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Monster $monster)
     {
-        //
+        $monster->delete();
+
+        flash('Your Monster has been deleted', 'success');
+
+        return redirect('/');
     }
 }

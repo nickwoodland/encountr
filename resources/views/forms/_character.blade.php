@@ -1,16 +1,3 @@
-<?php /*
-/// charcters field  multiselect
-/// npcs fields 1-6 (monster dropdown and number in group)
-/// conditions field
-
-$table->increments('id');
-$table->string('name');
-$table->string('conditions'); //i.e darkness, wind, water, etc
-$table->smallInteger('round');
-$table->timestamps();
-*/
-?>
-
 <div class="form-group">
 
     {!! Form::label('name', 'Name:') !!}
