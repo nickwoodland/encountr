@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Monster;
+
 class MonstersController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class MonstersController extends Controller
      */
     public function index()
     {
-        //
+        $monsters = Monster::orderBy('name', 'desc')->get();
+        return view('monsters/index')->with('monsters', $monsters);
     }
 
     /**
