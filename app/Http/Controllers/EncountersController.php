@@ -32,9 +32,10 @@ class EncountersController extends Controller
      */
     public function create()
     {
-        $pcs = Character::pluck('name', 'id');
+        /*$pcs = Character::pluck('name', 'id');
         $npcs = Monster::pluck('name', 'id');
-        return view('encounters/create')->with(array('pcs'=>$pcs,'npcs'=>$npcs));
+        return view('encounters/create')->with(array('pcs'=>$pcs,'npcs'=>$npcs));*/
+        return view('encounters/create');
     }
 
     /**
@@ -72,9 +73,9 @@ class EncountersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Encounter $encounter)
     {
-        //
+        return view('encounters/edit')->with('encounter', $encounter);
     }
 
     /**

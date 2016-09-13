@@ -64,9 +64,9 @@ class CharactersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Character $character)
     {
-        //
+        return view('characters/edit')->with('character', $character);
     }
 
     /**
